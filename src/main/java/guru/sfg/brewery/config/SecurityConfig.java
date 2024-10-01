@@ -7,8 +7,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
@@ -37,7 +37,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .roles("ADMIN")
                 .and()
                 .withUser("user")
-                .password("5729c48b3e5ad317117449ae6bb678f9e5ad0c7009f3750018e143e8066698c3ae08de7a7ed551a0")
+                .password("$2a$10$6rIRyboxIGAgC.zAwSb5NeChgEoyX1R8QTYYuwLBE4/uyWNfYwW/e")
                 .roles("USER")
                 .and()
                 .withUser("scott")
@@ -47,7 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     
     @Bean
     PasswordEncoder passwordEncoder() {
-        return new StandardPasswordEncoder();
+        return new BCryptPasswordEncoder();
     }
 
 //    @Override
